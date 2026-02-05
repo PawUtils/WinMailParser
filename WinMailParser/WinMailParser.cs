@@ -72,10 +72,7 @@ namespace WinMailParser
         /// <exception cref="ArgumentNullException">If <paramref name="logger"/> is <see langword="null"/></exception>
         private WinMailParser( ILogger logger )
         {
-            if ( logger == null )
-                throw new ArgumentNullException("logger");
-
-            Log = logger;
+            Log = logger ?? throw new ArgumentNullException("logger");
             Verbose = false;
             TNEFFile = string.Empty;
         }
