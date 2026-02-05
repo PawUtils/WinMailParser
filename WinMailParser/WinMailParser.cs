@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using WinMailParser.Logging;
+using Microsoft.Extensions.Logging;
 
 namespace WinMailParser
 {
@@ -465,28 +465,6 @@ namespace WinMailParser
             }
 
             return result;
-        }
-
-        /// <summary>
-        /// save a decoded attachment to file
-        /// </summary>
-        /// <param name="attachment">decoded attachment</param>
-        /// <param name="pathToSaveTo">Where to save the attachment to</param>
-        /// <returns><see langword="true"/> if succeeded, <see langword="false"/> otherwise</returns>
-        /// <exception cref="ArgumentNullException">If <paramref name="attachment"/> or <paramref name="pathToSaveTo"/> is <see langword="null"/></exception>
-        /// <exception cref="ArgumentException">If <paramref name="pathToSaveTo"/> does not exist</exception>
-        public static bool SaveAttachment( WinMailAttachment attachment, DirectoryInfo pathToSaveTo )
-        {
-            if ( attachment == null )
-                throw new ArgumentNullException("attachment");
-
-            if ( pathToSaveTo == null )
-                throw new ArgumentNullException("pathToSaveTo");
-
-            if ( !pathToSaveTo.Exists )
-                throw new ArgumentException("The path " + pathToSaveTo.FullName + " does not exist");
-
-            return SaveAttachment(attachment, pathToSaveTo, DefaultLogger.Create());
         }
 
         /// <summary>
